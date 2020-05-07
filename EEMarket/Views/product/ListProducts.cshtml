@@ -1,0 +1,92 @@
+﻿@using EEMarket.Models;
+@{
+    ViewBag.Title = "ShowProducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>ShowProducts</h2>
+<br />
+<form method="POST">
+    <label style="position:absolute;top:138px;left:120px;">Filter: </label>
+    <input type="text" class="form-control" name="FilterText" placeholder="e.g. Mobiles" style="max-width:720px;position:absolute;top:130px;left:200px;" />
+    <input type="submit" class="btn btn-primary" value="Add Product" style="position:absolute;top:130px;left:950px;display:none" id="FilterButton" />
+</form>
+<a class="btn btn-primary" href="AddProduct" style="position:absolute;top:130px;left:950px;">Add Product</a>
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="row">
+        <div style="display:flex;flex-wrap:wrap">
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">CART LIST</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h6>you didn't add anything to your cart </h6>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            @foreach (product product in ViewBag.Porduct)
+            {
+                if (ViewBag.id == null || ViewBag.id == "")
+                {
+                   
+                        <div class="card col-lg-2 col-md-4 col-xs-6">
+                            <a href="@Url.Action( "Details", new { id = product.ID })">
+                                <img class="card-img-top" src="~/Uploads/@product.Image" alt="Card image cap" style="height:120px;width:155px;padding-left:18px;">
+                            </a>
+                                <div class="card-body" style="margin: 20px;height:100px;width:130px">
+                                    <h5 class="card-title" style="display:inline;font-weight:bold;width:180px">@product.Name </h5>
+                                    <span style=" display:inline;font-weight:bold;float:right">@product.Price $</span>
+                                    <p class="card-text" style="height:40px;width:130px"> @product.Description</p>
+                                    <form method="POST">
+                                        <input type="hidden" value="@product.ID" name="product_id_to_add_to_cart" />
+                                        <input type="submit" class="btn btn-primary" style="width:130px" value="Add to Cart" />
+                                    </form>
+                                </div>
+                        </div>
+                   
+
+                }
+                else
+                {
+                    if (ViewBag.id == product.Name)
+                    {
+                        
+                            <div class="card col-lg-2 col-md-4 col-xs-6">
+                                <a href="@Url.Action( "Details", new { id = product.ID })">
+                                    <img class="card-img-top" src="~/Uploads/@product.Image" alt="Card image cap" style="height:150px;width:130px">
+                                </a>
+                        <div class="card-body" style="margin: 20px;height:100px;width:130px">
+                            <h5 class="card-title" style="display:inline;font-weight:bold;width:180px">@product.Name </h5>
+                            <span style=" display:inline;font-weight:bold;float:right">@product.Price $</span>
+                            <p class="card-text" style="height:40px;width:130px"> @product.Description</p>
+                            <a href="#" class="btn btn-primary" style="width:130px">Add to Cart</a>
+                        </div>
+                    </div>
+                       
+                            }
+
+                }
+            }
+
+
+                    </div>
+    </div>
+
+</div>
