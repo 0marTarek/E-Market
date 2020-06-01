@@ -11,9 +11,10 @@ namespace EEMarket.Models
         [Key]
         public int item_id  { get; set; }
 
-        public product product_id { get; set; }
-        public int? ProductId { get; set; }
+        public virtual product product { get; set; }
+        public int ProductId { get; set; }
 
         public DateTime add_at { get; set; }
+        public string card_id { get; set; }
     }
 }

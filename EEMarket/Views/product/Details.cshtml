@@ -47,7 +47,10 @@
     </dl>
 </div>
 <p>
-    
-    <a href="@Url.Action("EditProduct", new { id = Model.ID })" class="btn btn-primary">Edit</a>
-    <a href="@Url.Action("DeleteProduct", new { id = Model.ID })" class="btn btn-primary">Delete</a>
-</p>
+
+
+<a href="@Url.Action("EditProduct", new { id = Model.ID })" class="btn btn-primary">Edit</a>
+<a href="@Url.Action("DeleteProduct", new { id = Model.ID })" class="btn btn-primary">Delete</a>
+<a href="@Url.Action("AddToCart","ShoppingCart", new { id = Model.ID })" class="btn btn-primary">Add To Cart</a>
+
+
