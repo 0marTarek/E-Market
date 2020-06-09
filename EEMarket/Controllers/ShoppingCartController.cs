@@ -1,4 +1,6 @@
-﻿using EEMarket.context;
+﻿/*
+
+using EEMarket.context;
 using EEMarket.ViewModel;
 using System.Linq;
 using System.Web;
@@ -23,7 +25,7 @@ namespace EEMarket.Controllers
 
             var viewModel = new CardViewModel
             {
-                CartItems = cart.GetCartItems(),
+             //   CartItems = cart.GetCartItems(),
                 //CartTotal = cart.GetTotal()
             };
             return View(viewModel);
@@ -40,11 +42,11 @@ namespace EEMarket.Controllers
         public ActionResult RemoveFromCart(int id)
         {
             var cart = ShoppingCart.GetCart(this.HttpContext);
-            string productName = db.cart.Single(item => item.item_id == id).product.Name;
+         //   string productName = db.cart.Single(item => item.item_id == id).product.Name;
             int itemCount = cart.RemoveFromCart(id);
             var results = new RemovedCard
             {
-                Message = Server.HtmlEncode(productName) + "has been removed from your shopping cart.",
+              //  Message = Server.HtmlEncode(productName) + "has been removed from your shopping cart.",
                // CartTotal = cart.GetTotal(),
                // CartCount = cart.GetCount(),
                 ItemCount = itemCount,
@@ -56,4 +58,5 @@ namespace EEMarket.Controllers
 
         
     }
-}
+} 
+*/

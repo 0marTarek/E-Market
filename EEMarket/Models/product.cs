@@ -9,6 +9,7 @@ namespace EEMarket.Models
 {
     public class product
     {
+        [Key]
         public int ID { get; set; }
         public String Name { get; set; }
         public double Price { get; set; }
@@ -16,6 +17,7 @@ namespace EEMarket.Models
         public String Description { get; set; }
         public Category category_Id { get; set; }
         public int? CategoryId { get; set; }
+        public virtual Cart Cart { get; set; }
 
 
 

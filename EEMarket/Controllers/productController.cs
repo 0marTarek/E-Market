@@ -16,6 +16,57 @@ namespace EEMarket.Controllers
     public class productController : Controller
     {
         DB_CONTEXT db = new DB_CONTEXT();
+        public ActionResult CartIndex()
+        {
+            List<Cart> cartlist = db.cart.ToList();
+            return View(cartlist);
+        }
+        public ActionResult Popup() 
+        {
+            return PartialView();
+        }
+
+        public ActionResult AddToCart(int id)
+        {
+            // ProductModel productModel = new ProductModel();
+            //check if session with cart is empty
+            var cart1 = new Cart();
+            cart1.ProductId = id;
+            cart1.add_at = DateTime.Now;
+            var cart2 = db.cart.Find(id);
+            if (cart2 != null)
+            {
+                return RedirectToAction("ListProducts");
+            }
+            else
+            {
+                db.cart.Add(cart1);
+                db.SaveChanges();
+                return RedirectToAction("ListProducts");
+            }
+        }
+       
+
+        [HttpPost]
+        public ActionResult Remove(int id)
+        {
+
+            var cart = db.cart.Where(x => x.ProductId == id).FirstOrDefault();
+            string productName = db.product.Single(item => item.ID == id).Name;
+            var results = new RemovedCard
+            {
+                Message = Server.HtmlEncode(productName) + "has been removed from your shopping cart.",
+                // CartTotal = cart.GetTotal(),
+                // CartCount = cart.GetCount(),
+               // ItemCount = itemCount,
+                DeleteId = id
+            };
+            db.cart.Remove(cart);
+            db.SaveChanges();
+            return Json(results);
+        }
+
+
         [HttpGet]
         public ActionResult AddProduct()
         {
@@ -84,6 +135,13 @@ namespace EEMarket.Controllers
             ViewBag.Porduct = Allproducts;
             return View();
         }
+       
+        public ActionResult Cart()
+        {
+            List <Cart> model = db.cart.ToList();
+            return PartialView(model);
+        }
+
 
         [HttpPost]
         public ActionResult ListProducts(String FilterText)
@@ -100,7 +158,7 @@ namespace EEMarket.Controllers
             Category FilterId = null;
             try
             {
-                 FilterId = db.category.Single(Category => Category.Name == FilterText);
+                FilterId = db.category.Single(Category => Category.Name == FilterText);
             }
             catch (Exception e)
             {
@@ -109,15 +167,15 @@ namespace EEMarket.Controllers
                 return View();
             }
             int TheID;
-            if ( FilterId == null)
+            if (FilterId == null)
             {
                 Allproducts = db.product.ToList();
                 ViewBag.Porduct = Allproducts;
                 return View();
             }
-            TheID= FilterId.Id;
+            TheID = FilterId.Id;
             Allproducts = db.product.Where(product => product.CategoryId == TheID).ToList();
-            
+
             //Allproducts = db.product.ToList();
             ViewBag.Porduct = Allproducts;
             return View();

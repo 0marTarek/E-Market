@@ -1,4 +1,5 @@
-﻿using EEMarket.context;
+﻿/*
+using EEMarket.context;
 using EEMarket.ViewModel;
 using System.Linq;
 using System.Web;
@@ -31,24 +32,24 @@ namespace EEMarket.Models
         }
         public void AddToCart(product product)
         {
-            var cartItem = db.cart.SingleOrDefault(c => c.card_id == ShoppingCartId && c.ProductId == product.ID);
-            cartItem = new Cart
+          //  var cartItem = db.cart.SingleOrDefault(c => c.card_id == ShoppingCartId && c.ProductId == product.ID);
+            /*cartItem = new Cart
             {
                     ProductId = product.ID,
-                    card_id = ShoppingCartId,
-                    add_at = DateTime.Now
-            };
-            db.cart.Add(cartItem);
-            db.SaveChanges();
-        }
+                 //   card_id = ShoppingCartId,
+                  //  add_at = DateTime.Now
+            };*/
+            //db.cart.Add(cartItem);
+           // db.SaveChanges();
+         /*
         public int RemoveFromCart(int id)
         {
             // Get the cart
-            var cartItem = db.cart.Single(cart => cart.card_id == ShoppingCartId && cart.item_id == id);
+          //  var cartItem = db.cart.Single(cart => cart.card_id == ShoppingCartId && cart.item_id == id);
 
             int itemCount = 0;
 
-            db.cart.Remove(cartItem);
+          //  db.cart.Remove(cartItem);
                 
          
              db.SaveChanges();
@@ -57,13 +58,13 @@ namespace EEMarket.Models
         }
         //retrive current session card
         //http get
-        public List<Cart> GetCartItems()
+      /*  public List<Cart> GetCartItems()
         {
-            return db.cart.Where(cart => cart.card_id == ShoppingCartId).ToList();
-        }
+           // return db.cart.Where(cart => cart.card_id == ShoppingCartId).ToList();
+        }*/
         //retrive current session card
         //http post
-        public string GetCartId(HttpContextBase context)
+   /*     public string GetCartId(HttpContextBase context)
         {
             if (context.Session[CartSessionKey] == null)
             {
@@ -83,3 +84,4 @@ namespace EEMarket.Models
         }
     }
 }
+*/

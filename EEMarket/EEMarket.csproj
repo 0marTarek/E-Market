@@ -137,6 +137,10 @@
     <Compile Include="Migrations\202006011935180_sd2.Designer.cs">
       <DependentUpon>202006011935180_sd2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006051513560_sjd.cs" />
+    <Compile Include="Migrations\202006051513560_sjd.Designer.cs">
+      <DependentUpon>202006051513560_sjd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
@@ -192,6 +196,9 @@
     <Content Include="Views\product\ListProducts.cshtml" />
     <Content Include="Views\product\Details.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\product\Index.cshtml" />
+    <Content Include="Views\product\CartIndex.cshtml" />
+    <Content Include="Views\product\ShowModalPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -212,6 +219,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006011935180_sd2.resx">
       <DependentUpon>202006011935180_sd2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006051513560_sjd.resx">
+      <DependentUpon>202006051513560_sjd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
